@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %} SignUp {% endblock %}
+
+{% block content %}
+    <br><br>
+    <div class="d-flex justify-content-center">
+        <h2> Sign Up</h2>
+    </div>
+
+<div class="container mt-4">
+  <form action="/signup" method="POST">
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email">
+    </div>
+
+    <div class="form-group">
+      <label for="first_name">First Name</label>
+      <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter First Name">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+    </div>
+
+    <div class="form-group">
+      <label for="confirm_password">Confirm Password</label>
+      <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password">
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+{% endblock %}
+

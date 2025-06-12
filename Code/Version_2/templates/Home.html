@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+    <br><br>
+    <div class="d-flex justify-content-center">
+        <h2> The Home,    </h2>
+        <br><br>
+        <h4> Where you see Your notes </h4>
+    </div>
+
+
+{% for note in Notes %}
+   <div class="d-flex justify-content-center">{{note.content}}</div>
+{% endfor %}
+
+<div class="container mt-4">
+  <form action="/home" method="POST">
+    <div class="form-group">
+      <label for="User_Note">Note</label>
+      <input type="text" class="form-control" id="User_Note" name="User_Note" placeholder="Write Your Notes">
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+
+
+{% endblock %}
+
