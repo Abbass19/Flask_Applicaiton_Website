@@ -1,0 +1,8 @@
+This is the second version of my Flask project. It includes sign-up and sign-in pages and uses Flask-SQLAlchemy to manage the database.
+Users can log in, write notes, log out, and when they log back in, their notes will still be there.
+
+Problems I didn't fix yet are 
+  1.Errors when intializing the server and it is empty. You should sign up first other wise it makes error
+  2.The Naviagtion bar at each page should be different. 
+  3.I havn't checked for duplicate emails as well in the sign up
+  4.Security Issue: Plain Text Passwords. Never store passwords as plain text.
