@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">Checkout Summary</h2>
+
+  {% if tracks %}
+    <ul class="list-group mb-4">
+      {% for track in tracks %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ track.name }}
+          <span class="badge badge-primary badge-pill">${{ "%.2f"|format(track.unit_price) }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <div class="text-right mb-4">
+      <h4>Total: ${{ "%.2f"|format(total) }}</h4>
+    </div>
+
+    <form method="POST">
+      <h5>Billing Info</h5>
+
+      <button type="submit" class="btn btn-success btn-block">Confirm &amp; Pay</button>
+    </form>
+  {% else %}
+    <p>Your cart is empty. Go add some tracks first!</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+
+  <!-- Welcome, Banner -->
+  <div class="jumbotron p-4 mb-4 bg-primary text-white rounded">
+    <h1 class="display-4">Welcome to Music Explorer!</h1>
+    <p class="lead">Discover popular tracks, albums, artists, and share your thoughts.</p>
+  </div>
+
+  <!-- Top Row: Popular Tracks & Popular Albums -->
+  <div class="row mb-4">
+    <!-- Popular Tracks (50%) -->
+    <div class="col-md-6">
+      <h3>Popular Tracks</h3>
+      <div class="list-group">
+        {% for track in popular_tracks %}
+        <div class="list-group-item">
+          <!-- Here you can reuse your track_element structure -->
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <strong>{{ track.name }}</strong><br />
+              Genre: {{ track.genre }}<br />
+              Album: {{ track.album_name }}
+            </div>
+              <div class="text-right">
+                <form method="POST" action="{{ url_for('main.add_to_cart') }}">                  <input type="hidden" name="track_name" value="{{ track.name }}">
+                  <button type="submit" class="btn btn-sm btn-primary mt-1">Buy</button>
+                </form>
+              </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Popular Albums (50%) -->
+<!-- Popular Albums (50%) -->
+<div class="col-md-6">
+  <h3>Popular Albums</h3>
+  <ul class="list-group">
+    {% for album in popular_albums %}
+      <li class="list-group-item">
+        <strong>{{ album.name }}</strong> by {{ album.artist }}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+  </div>
+
+  <!-- Bottom Row: Popular Artists & Comment Section -->
+  <div class="row">
+    <!-- Popular Artists (50%) -->
+    <div class="col-md-6">
+      <h3>Popular Artists</h3>
+      <ul class="list-group">
+        {% for artist in popular_artists %}
+          <li class="list-group-item">
+            <b>{{ artist.name }} </b>       — Sold:        {{ artist.total_sold }}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Comment Section (50%) -->
+    <div class="col-md-6">
+      <h3>Comments</h3>
+      <div class="border rounded p-3" style="height: 300px; overflow-y: scroll; background-color: #f9f9f9;">
+        {% for comment in comments %}
+          <div class="mb-3">
+            <strong>{{ comment.user_name }}</strong> <small class="text-muted">{{ comment.date_posted }}</small>
+            <p>{{ comment.text }}</p>
+          </div>
+        {% else %}
+          <p>No comments yet. Be the first to comment!</p>
+        {% endfor %}
+      </div>
+
+      {#
+      <form method="POST" action="{{ url_for('submit_comment') }}" class="mt-3">
+        <div class="form-group">
+          <label for="userName">Your Name</label>
+          <input type="text" id="userName" name="userName" class="form-control" placeholder="Enter your name" required />
+        </div>
+        <div class="form-group">
+          <label for="commentText">Comment</label>
+          <textarea id="commentText" name="commentText" rows="3" class="form-control" placeholder="Write your comment here..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Submit Comment</button>
+      </form>
+      #}
+    </div>
+  </div>
+
+</div>
+{% endblock %}

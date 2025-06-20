@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<form method="POST">
+  <h3 align="center">Sign Up</h3>
+  <div class="container">
+    <div class="row">
+      <!-- First Name and Last Name -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter first name" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter last name" required>
+        </div>
+      </div>
+
+      <!-- Email and Phone -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="phone">Phone (optional)</label>
+          <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone number">
+        </div>
+      </div>
+
+      <!-- Password and Confirm Password -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="password1">Password</label>
+          <input type="password" class="form-control" id="password1" name="password1" placeholder="Enter password" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="password2">Password (Confirm)</label>
+          <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm password" required>
+        </div>
+      </div>
+
+      <!-- Company and Address -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="company">Company (optional)</label>
+          <input type="text" class="form-control" id="company" name="company" placeholder="Company name">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="address">Address (optional)</label>
+          <input type="text" class="form-control" id="address" name="address" placeholder="Street address">
+        </div>
+      </div>
+
+      <!-- City and State -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="city">City (optional)</label>
+          <input type="text" class="form-control" id="city" name="city" placeholder="City">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="state">State (optional)</label>
+          <input type="text" class="form-control" id="state" name="state" placeholder="State">
+        </div>
+      </div>
+
+      <!-- Country and Postal Code -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="country">Country (optional)</label>
+          <input type="text" class="form-control" id="country" name="country" placeholder="Country">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="postalCode">Postal Code (optional)</label>
+          <input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="Postal Code">
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-primary px-5">Submit</button>
+    </div>
+  </div>
+</form>
+{% endblock %}

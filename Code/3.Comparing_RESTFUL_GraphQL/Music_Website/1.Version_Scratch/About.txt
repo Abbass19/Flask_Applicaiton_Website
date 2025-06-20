@@ -1,0 +1,18 @@
+In this project I am Vibe coding. Coding with Chatgpt. I took the decision to use a package
+instead of coding in one python file. Which means I have to ask Chat-gpt and try to understand the
+most of how package coding works...
+
+The first step is understanding what each one of these files and folders resemble here:
+    1.__init__.py : Initialize flask app and extensions like SQL_Alchemy. Central place.
+    2.routes folder : Handles page logic. called the views in hte previous
+        2.1.auth_routes.py : The routes for sign in and sign up
+        2.2.main_routes.py : The routes for Home, Explore and Checkout
+    3.models folder : Database table definitions (ORM Models)
+        3.1. __init__.py
+        3.2.user_models.py : Tables for User, Notes, Payments
+    4.templates folder :
+        4.1.base.html
+        4.2.
+    5.static folder: CSS, Images and JS files
+        5.1.styles.css
+    

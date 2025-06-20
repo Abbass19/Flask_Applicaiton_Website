@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Explore{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+  <!-- Title and Form -->
+  <div class="row mb-4 align-items-center" style="background-color: #cce6ff; border-radius: 8px; padding: 1rem;">
+    <!-- Left Title -->
+    <div class="col-md-3">
+      <h2 class="font-weight-bold">Explore</h2>
+    </div>
+
+<div class="col-md-9">
+  <form method="GET" action="/explore">
+    <div class="row align-items-center gx-3">
+
+      <div class="col-auto">
+        <label for="genreSelect" class="sr-only">Genre</label>
+        <select class="form-control mb-2" id="genreSelect" name="genre">
+          <option value="" selected>All Genres</option>
+          {% for genre in genres %}
+            <option value="{{ genre }}" {% if request.args.get('genre') == genre %}selected{% endif %}>{{ genre }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-auto">
+        <label for="minutesRange" class="mb-0">Max Minutes:
+          <span id="minutesValue">{{ request.args.get('minutes', 10) }}</span>
+        </label>
+        <input type="range" class="form-control-range" min="1" max="15" step="1"
+               id="minutesRange" name="minutes" value="{{ request.args.get('minutes', 10) }}">
+      </div>
+
+      <div class="col-auto">
+        <input type="text" class="form-control mb-2" id="keywordInput" name="keyword"
+               placeholder="Keyword" value="{{ request.args.get('keyword', '') }}" />
+      </div>
+
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-2">Search</button>
+      </div>
+
+    </div>
+  </form>
+</div>
+
+
+
+  <!-- Track List (track_block) -->
+  <div class="container-fluid">
+  {% if tracks %}
+    <table class="table table-striped table-bordered w-100">
+      <thead class="thead-light">
+        <tr>
+          <th>Name</th>
+          <th>Genre</th>
+          <th>Album</th>
+          <th>Time</th>
+          <th>Price</th>
+          <th class="text-center">Buy</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for track in tracks %}
+          <tr>
+            <td>{{ track.name }}</td>
+            <td>{{ track.genre }}</td>
+            <td>{{ track.album_name }}</td>
+            <td>{{ track.time }}</td>
+            <td>${{ "%.2f"|format(track.price) }}</td>
+            <td class="text-center">
+              <form method="POST" action="{{ url_for('main.add_to_cart') }}">
+                <input type="hidden" name="track_name" value="{{ track.name }}">
+                <input type="hidden" name="next" value="{{ request.path }}">  <!-- current URL -->
+                <button type="submit" class="btn btn-sm btn-primary">Buy</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No tracks found.</p>
+  {% endif %}
+</div>
+
+
+{% block javascript %}
+<script>
+  // Update the displayed minutes value when slider moves
+  const minutesRange = document.getElementById('minutesRange');
+  const minutesValue = document.getElementById('minutesValue');
+  if (minutesRange && minutesValue) {
+    minutesRange.addEventListener('input', function() {
+      minutesValue.textContent = this.value;
+    });
+  }
+</script>
+{% endblock %}
+
+{% endblock %}
