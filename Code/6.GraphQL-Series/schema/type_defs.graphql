@@ -1,0 +1,40 @@
+type User {
+  id: ID!
+  name: String!
+  username: String!
+  age: Int!
+  nationality: String!
+  Favorite_Movies: [Movie!]
+}
+
+type Movie {
+  id: ID!
+  name: String!
+  year: Int!
+  isInTheaters: Boolean!
+}
+
+type Query {
+  users: [User!]!
+  user(id: ID!): User
+  movies: [Movie!]!
+  movie(name: String!): Movie
+}
+
+type Mutation {
+  createUser(input: CreateUserInput!): User
+  updateUserName(input: Local_Python_Input!): User
+  deleteUser(id: ID!): User
+}
+
+input CreateUserInput {
+  name: String!
+  username: String!
+  age: Int!
+  nationality: String!
+}
+
+input Local_Python_Input {
+  id: ID!
+  new_username: String!
+}
